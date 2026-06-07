@@ -22,7 +22,17 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/health", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html")
+                        // Liberacao temporaria para testes dos endpoints REST antes da autenticacao JWT.
+                        .requestMatchers(
+                                "/api/health",
+                                "/api/paciente/**",
+                                "/api/medico/**",
+                                "/api/avaliacao/**",
+                                "/api/encaminhamento/**",
+                                "/api/usuarios/**",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
